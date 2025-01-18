@@ -1,0 +1,167 @@
+[gd_scene load_steps=13 format=3 uid="uid://c8llbi8upgm8l"]
+
+[ext_resource type="Script" path="res://demos/scripts/zoomer.gd" id="1_dt3oj"]
+[ext_resource type="Script" path="res://demos/scripts/move.gd" id="2_8twpa"]
+[ext_resource type="Script" path="res://demos/scripts/player.gd" id="2_wc4g6"]
+[ext_resource type="Script" path="res://addons/TrackVision/TrackVision2D.gd" id="3_v4mok"]
+[ext_resource type="Script" path="res://demos/scripts/color_fade.gd" id="5_v2e7b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xujgk"]
+size = Vector2(436, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bsk52"]
+size = Vector2(40, 69)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1yti"]
+size = Vector2(40, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flim1"]
+size = Vector2(40, 40)
+
+[sub_resource type="Animation" id="Animation_81nw5"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y132q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_juf0o"]
+_data = {
+"RESET": SubResource("Animation_y132q"),
+"fade": SubResource("Animation_81nw5")
+}
+
+[node name="mini demo" type="Node2D"]
+
+[node name="tittle" type="ColorRect" parent="."]
+offset_left = 19.0
+offset_top = -8.0
+offset_right = 387.0
+offset_bottom = 65.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="tittle"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 13.0
+offset_right = 343.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 32
+text = "TrackVision2D demo"
+
+[node name="move_label" type="Label" parent="tittle"]
+offset_left = 45.0
+offset_top = 83.0
+offset_right = 152.0
+offset_bottom = 106.0
+text = "Move Camera"
+
+[node name="move_label2" type="Label" parent="tittle"]
+offset_left = 278.0
+offset_top = 91.0
+offset_right = 385.0
+offset_bottom = 114.0
+text = "Zoom"
+
+[node name="floor" type="StaticBody2D" parent="."]
+position = Vector2(210, 195)
+
+[node name="texture" type="ColorRect" parent="floor"]
+offset_left = -218.0
+offset_top = -10.0
+offset_right = 216.0
+offset_bottom = 38.0
+color = Color(0.462745, 0.156863, 0, 1)
+
+[node name="colision" type="CollisionShape2D" parent="floor"]
+position = Vector2(-1, 14)
+shape = SubResource("RectangleShape2D_xujgk")
+
+[node name="zoomer" type="Area2D" parent="." node_paths=PackedStringArray("camera")]
+position = Vector2(331, 145)
+script = ExtResource("1_dt3oj")
+camera = NodePath("../camera")
+
+[node name="texture" type="ColorRect" parent="zoomer"]
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0.309804, 0, 1)
+
+[node name="colision" type="CollisionShape2D" parent="zoomer"]
+position = Vector2(20, 4.5)
+shape = SubResource("RectangleShape2D_bsk52")
+
+[node name="move" type="Area2D" parent="." node_paths=PackedStringArray("camera", "object")]
+position = Vector2(100, 144)
+script = ExtResource("2_8twpa")
+camera = NodePath("../camera")
+object = NodePath("../color_fade")
+
+[node name="texture" type="ColorRect" parent="move"]
+offset_top = -35.0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0.662745, 0, 1)
+
+[node name="colision" type="CollisionShape2D" parent="move"]
+position = Vector2(20, 1.5)
+shape = SubResource("RectangleShape2D_d1yti")
+
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(185, 76)
+script = ExtResource("2_wc4g6")
+
+[node name="texture" type="ColorRect" parent="player"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.0235294, 0, 1, 1)
+
+[node name="colision" type="CollisionShape2D" parent="player"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_flim1")
+
+[node name="camera" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(185, 76)
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("3_v4mok")
+target = NodePath("../player")
+
+[node name="color_fade" type="ColorRect" parent="."]
+offset_left = 368.676
+offset_top = 313.39
+offset_right = 408.676
+offset_bottom = 353.39
+script = ExtResource("5_v2e7b")
+
+[node name="anim" type="AnimationPlayer" parent="color_fade"]
+libraries = {
+"": SubResource("AnimationLibrary_juf0o")
+}
+
+[connection signal="body_entered" from="zoomer" to="zoomer" method="_on_body_entered"]
+[connection signal="body_exited" from="zoomer" to="zoomer" method="_on_body_exited"]
+[connection signal="body_entered" from="move" to="move" method="_on_body_entered"]
