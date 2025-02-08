@@ -9,3 +9,5 @@ A camera precisa de um alvo para seguilo e para isso selecione o node que você 
 
 Link do vídeo do plugin:
 https://www.youtube.com/watch?v=x1KZq77TIjs
+
+A documentação está no arquivo documentation.txt
