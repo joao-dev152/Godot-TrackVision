@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8llbi8upgm8l"]
+[gd_scene load_steps=14 format=3 uid="uid://c8llbi8upgm8l"]
 
 [ext_resource type="Script" path="res://demos/scripts/zoomer.gd" id="1_dt3oj"]
 [ext_resource type="Script" path="res://demos/scripts/move.gd" id="2_8twpa"]
 [ext_resource type="Script" path="res://demos/scripts/player.gd" id="2_wc4g6"]
+[ext_resource type="Script" path="res://demos/scripts/spinner.gd" id="3_lkr4x"]
 [ext_resource type="Script" path="res://addons/TrackVision/TrackVision2D.gd" id="3_v4mok"]
 [ext_resource type="Script" path="res://demos/scripts/color_fade.gd" id="5_v2e7b"]
 
@@ -18,21 +19,6 @@ size = Vector2(40, 73)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flim1"]
 size = Vector2(40, 40)
 
-[sub_resource type="Animation" id="Animation_81nw5"]
-resource_name = "fade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_y132q"]
 length = 0.001
 tracks/0/type = "value"
@@ -46,6 +32,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_81nw5"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_juf0o"]
@@ -73,6 +74,7 @@ theme_override_font_sizes/font_size = 32
 text = "TrackVision2D demo"
 
 [node name="move_label" type="Label" parent="tittle"]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 83.0
 offset_right = 152.0
@@ -80,6 +82,7 @@ offset_bottom = 106.0
 text = "Move Camera"
 
 [node name="move_label2" type="Label" parent="tittle"]
+layout_mode = 0
 offset_left = 278.0
 offset_top = 91.0
 offset_right = 385.0
@@ -131,8 +134,23 @@ color = Color(0, 0.662745, 0, 1)
 position = Vector2(20, 1.5)
 shape = SubResource("RectangleShape2D_d1yti")
 
+[node name="spinner" type="Area2D" parent="." node_paths=PackedStringArray("camera")]
+position = Vector2(28, 145)
+script = ExtResource("3_lkr4x")
+camera = NodePath("../camera")
+
+[node name="texture" type="ColorRect" parent="spinner"]
+offset_top = -35.0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 1)
+
+[node name="colision" type="CollisionShape2D" parent="spinner"]
+position = Vector2(20, 1.5)
+shape = SubResource("RectangleShape2D_d1yti")
+
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(185, 76)
+position = Vector2(186, 100)
 script = ExtResource("2_wc4g6")
 
 [node name="texture" type="ColorRect" parent="player"]
@@ -143,12 +161,6 @@ color = Color(0.0235294, 0, 1, 1)
 [node name="colision" type="CollisionShape2D" parent="player"]
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_flim1")
-
-[node name="camera" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(185, 76)
-zoom = Vector2(1.5, 1.5)
-script = ExtResource("3_v4mok")
-target = NodePath("../player")
 
 [node name="color_fade" type="ColorRect" parent="."]
 offset_left = 368.676
@@ -162,6 +174,13 @@ libraries = {
 "": SubResource("AnimationLibrary_juf0o")
 }
 
+[node name="camera" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(186, 100)
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("3_v4mok")
+target = NodePath("../player")
+
 [connection signal="body_entered" from="zoomer" to="zoomer" method="_on_body_entered"]
 [connection signal="body_exited" from="zoomer" to="zoomer" method="_on_body_exited"]
 [connection signal="body_entered" from="move" to="move" method="_on_body_entered"]
+[connection signal="body_entered" from="spinner" to="spinner" method="_on_body_entered"]
