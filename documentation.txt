@@ -1,0 +1,9 @@
+Documentação:
+
+Para baixar o plugin, primeiro, baixe o projeto no github, após isso copie a pasta addons para um projeto sem plugins instalado, mas caso haja plugins em seu projeto leve a pasta TrackVision 
+para dentro da sua pasta addons e em seguida, nos dois casos, ative o plugin.
+
+Para fazer a movimentação da camerâ use a propriedade target no inspetor e selecionbe o nó desejado.
+
+Existem algumas funções extras no plugin como a movement_camera() que você pode usar para criar animações de movimento simples, ou também, caso você queira uma animção de zoom use a função 
+zoom_anim() e para animações de giro da câmera use spin_camera().
