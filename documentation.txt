@@ -1,9 +1,27 @@
 Documentação:
 
+
 Para baixar o plugin, primeiro, baixe o projeto no github, após isso copie a pasta addons para um projeto sem plugins instalado, mas caso haja plugins em seu projeto leve a pasta TrackVision 
 para dentro da sua pasta addons e em seguida, nos dois casos, ative o plugin.
 
-Para fazer a movimentação da camerâ use a propriedade target no inspetor e selecionbe o nó desejado.
+TrackVision2D:
+Para fazer a movimentação da camera use a propriedade target no inspetor e selecionbe o nó desejado.
 
 Existem algumas funções extras no plugin como a movement_camera() que você pode usar para criar animações de movimento simples, ou também, caso você queira uma animção de zoom use a função 
-zoom_anim() e para animações de giro da câmera use spin_camera().
+zoom_anim().
+
+TrackVisionFixed3D:
+Para fazer a movimentação da camera use a propriedade target no inspetor e selecionbe o nó desejado.
+
+Este nó é uma camera 3D que pode ser usados em jogos com camera fixa em algum ângulo ou jogos de primeira pessoa onde o giro é feito pelo jogador e não pela camera.
+
+Para realizar a rotação da camera com base na rotação do alvo em x, y ou z, use as propriedades follow_target_rotation_x, follow_target_rotation_y e follow_target_rotation_z, respectivamente.
+
+TrackVision3D:
+Para fazer a movimentação da camera use a propriedade target no inspetor e selecionbe o nó desejado.
+
+Este nó não é, exatamente, uma camera, já que ele é um pivô de camera que possuem, propriedades de zoom, rotação e os entradas.
+
+TrackVisionManualController:
+Uma camera feita para jogos onde a camera não seguirá um objeto, mas será movimentada pelo jogador.
+Estou trabalhando para que este nó movasse também com o mouse ou toque na tela.
