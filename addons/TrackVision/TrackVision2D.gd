@@ -1,3 +1,4 @@
+@icon("res://addons/TrackVision/assets/icon_2D.png")
 @tool
 class_name TrackVision2D
 extends Camera2D
@@ -80,11 +81,3 @@ func movement_camera(duration : float, to : Vector2, call : String = "", object 
 	
 	target.set_physics_process(true)
 	target.set_process(true)
-
-func spin_camera(to : float, duration : float = 0.5, from : float = 0):
-	ignore_rotation = false
-	var spin_tween = create_tween()
-	if from != 0:
-		spin_tween.tween_property(self, "rotation", to, duration)
-	else:
-		spin_tween.tween_property(self, "rotation", to, duration).from(from)

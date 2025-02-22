@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlutoxqyruq04"]
+
+[ext_resource type="Script" path="res://addons/TrackVision/TrackVisionManualControl.gd" id="1_4jp2k"]
+
+[node name="mini_demo" type="Node2D"]
+
+[node name="1" type="ColorRect" parent="."]
+offset_right = 341.0
+offset_bottom = 170.0
+
+[node name="2" type="ColorRect" parent="."]
+offset_left = 248.0
+offset_top = 104.0
+offset_right = 589.0
+offset_bottom = 274.0
+color = Color(0, 0, 0, 1)
+
+[node name="3" type="ColorRect" parent="."]
+offset_top = 138.0
+offset_right = 341.0
+offset_bottom = 308.0
+color = Color(0.85098, 0.94902, 0, 1)
+
+[node name="4" type="ColorRect" parent="."]
+offset_left = 333.0
+offset_top = -4.0
+offset_right = 674.0
+offset_bottom = 166.0
+color = Color(0, 0.94902, 0, 1)
+
+[node name="camera" type="Camera2D" parent="."]
+script = ExtResource("1_4jp2k")

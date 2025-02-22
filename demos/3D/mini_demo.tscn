@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dq27tvqjofnnc"]
+
+[ext_resource type="Script" path="res://addons/TrackVision/TrackVision3D.gd" id="1_e65s8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mmwgc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_cbksj"]
+sky_material = SubResource("ProceduralSkyMaterial_mmwgc")
+
+[sub_resource type="Environment" id="Environment_uelvt"]
+background_mode = 2
+sky = SubResource("Sky_cbksj")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_jdcd4"]
+
+[node name="mini_demo" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uelvt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_jdcd4")
+
+[node name="view" type="Node3D" parent="." node_paths=PackedStringArray("target", "camera")]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+script = ExtResource("1_e65s8")
+target = NodePath("../MeshInstance3D")
+camera = NodePath("camera")
+
+[node name="camera" type="Camera3D" parent="view"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 4.2039e-45, 10)
