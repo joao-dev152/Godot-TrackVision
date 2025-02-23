@@ -24,4 +24,4 @@ Este nó não é, exatamente, uma camera, já que ele é um pivô de camera que 
 
 TrackVisionManualController:
 Uma camera feita para jogos onde a camera não seguirá um objeto, mas será movimentada pelo jogador.
-Estou trabalhando para que este nó movasse também com o mouse ou toque na tela.
+Estou trabalhando para que este nó movasse, também, com o mouse ou toque na tela.
