@@ -1,3 +1,5 @@
+# TrackVision Plugin - (c) 2025 JGminidev - Licensed under MIT
+
 O TrackVision é um plugin poderoso e altamente personalizável para o Godot Engine,
 projetado para oferecer controle total sobre a movimentação e o comportamento das câmeras em jogos 2D e 3D.
 Com TrackVision, você pode criar experiências visuais dinâmicas e imersivas, ajustando a câmera de maneira inteligente para acompanhar o jogador,
