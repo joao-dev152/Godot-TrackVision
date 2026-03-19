@@ -1,5 +1,6 @@
 @tool
 extends EditorPlugin
+# TrackVision Plugin - (c) 2025 JGminidev - Licensed under MIT License
 
 
 func _enter_tree() -> void:
